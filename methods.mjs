@@ -27,7 +27,20 @@ const server = createServer((req,res)=>{
             res.statusCode = 201;
             res.end(JSON.stringify({message:'POST Request- Creating new item',data:newItem}))
         });
-    
     }
+    else if(method === "PUT" && parsedURL.pathname.startsWith === '/api/items/'){
+        let body = "";
+        const itemId = parsedURL.pathname.split('/').pop();
+
+        req.on('data', chunk =>{
+            body += chunk.toString();
+        });
+        res.on("end",() =>{
+            const updatedItem = JSON.parse(body);
+            res.statusCode = 200;
+            res.end(JSON.stringify({message:`PUT Request- Updating item ${itemId}`,data:updatedItem}))
+        });
+    }
+    
 
 })
