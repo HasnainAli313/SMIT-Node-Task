@@ -47,5 +47,9 @@ const server = createServer((req,res)=>{
         res.end(JSON.stringify({message:`DELETE Request- Deleting item ${itemId}`}))
     }
 
+    else{
+        res.statusCode(404);
+        res.end(JSON.stringify({message:"Route not Found"}))
+    }
 
 })
