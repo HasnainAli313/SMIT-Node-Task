@@ -6,7 +6,7 @@ const server = createServer((req,res)=>{
 
     // getting from req 
     const {method ,url} = req;
-    const parsedURL = new URL(url,`http://${req.headers.hot}`);
+    const parsedURL = new URL(url,`http://${req.headers.host}`);
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -22,20 +22,20 @@ const server = createServer((req,res)=>{
         req.on('data',chunk => {
             body += chunk.toString();
         });
-        res.on('end',() =>{
+        req.on('end',() =>{
             const newItem = JSON.parse(body);
             res.statusCode = 201;
             res.end(JSON.stringify({message:'POST Request- Creating new item',data:newItem}))
         });
     }
-    else if(method === "PUT" && parsedURL.pathname.startsWith === '/api/items/'){
+    else if(method === "PUT" && parsedURL.pathname.startsWith('/api/items/')){
         let body = "";
         const itemId = parsedURL.pathname.split('/').pop();
 
         req.on('data', chunk =>{
             body += chunk.toString();
         });
-        res.on("end",() =>{
+        req.on("end",() =>{
             const updatedItem = JSON.parse(body);
             res.statusCode = 200;
             res.end(JSON.stringify({message:`PUT Request- Updating item ${itemId}`,data:updatedItem}))
@@ -48,8 +48,12 @@ const server = createServer((req,res)=>{
     }
 
     else{
-        res.statusCode(404);
+        res.statusCode = 404;
         res.end(JSON.stringify({message:"Route not Found"}))
     }
 
+})
+
+server.listen(PORT,()=>{
+    console.log(`server listening on http://localhost:${PORT}`)
 })
