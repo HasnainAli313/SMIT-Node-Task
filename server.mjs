@@ -19,6 +19,10 @@ const server = createServer((req,res)=>{
     res.writeHead(200,{'Content-Type' :'application/json'});
     res.end("This is contact-us page")      
     }
+    else{
+        res.writeHead(404,{'Content-Type' :'application/json'});
+        res.end("Not Found") 
+    }
 })
 
 server.listen(3000,()=>{
