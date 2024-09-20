@@ -5,7 +5,11 @@ const server = createServer((req,res)=>{
 
     if(url === "/"){
     res.writeHead(200,{'Content-Type' :'application/json'});
-    res.end("This is (default) home page")
-
+    res.end("This is (default) home page")      
     }
+    else if(url === "/about"){
+    res.writeHead(200,{'Content-Type' :'application/json'});
+    res.end("This is about page")      
+    }
+    
 })
