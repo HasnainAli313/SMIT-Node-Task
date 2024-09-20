@@ -15,4 +15,8 @@ const server = createServer((req,res)=>{
     res.writeHead(200,{'Content-Type' :'application/json'});
     res.end("This is services page")      
     }
+    else if(url === "/contact-us"){
+    res.writeHead(200,{'Content-Type' :'application/json'});
+    res.end("This is contact-us page")      
+    }
 })
