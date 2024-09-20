@@ -20,3 +20,7 @@ const server = createServer((req,res)=>{
     res.end("This is contact-us page")      
     }
 })
+
+server.listen(3000,()=>{
+    console.log("server is listening on http://localhost:3000");
+})
