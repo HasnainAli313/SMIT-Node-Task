@@ -41,6 +41,11 @@ const server = createServer((req,res)=>{
             res.end(JSON.stringify({message:`PUT Request- Updating item ${itemId}`,data:updatedItem}))
         });
     }
-    
+    else if(method === 'DELETE' && parsedURL.pathname.startsWith('/api/items/')){
+        const itemId = parsedURL.pathname.split('/').pop();
+        res.statusCode = 200;
+        res.end(JSON.stringify({message:`DELETE Request- Deleting item ${itemId}`}))
+    }
+
 
 })
